@@ -96,6 +96,9 @@ $(document).ready(function() {
     $('.parallax').parallax();
     $('.slider').slider({full_width: true});
     $(".button-collapse").sideNav();
+    $('select').material_select();
+     $('ul.tabs').tabs();
+
 });
 
 function initialize() {

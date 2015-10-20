@@ -1,22 +1,26 @@
+<div class="container">
+<div class="row">
 <p id="notice"><%= notice %></p>
-<h2>Complaint Details </h2>
-<p>
-  <strong>User name:</strong>
-  <%= link_to "#{User.find(@complaint.user_id).name}", user_view_path(:id => User.find(@complaint.user_id).id) %> 
-</p>
-<p>
-<%= image_tag @complaint.species_image.url(:thumb) %>
-</p>
-<p>
-  <strong>Species:</strong>
-  <%= @complaint.species %>
-</p>
+<h2 class="center-align">Complaint Details </h2>
 
-<p>
+<div class="col s12 m6 l6">
+<%= image_tag @complaint.species_image.url(:thumb) %>
+</div>
+
+<div class="col s12 m6 l6">
+  <div class="row">
+    <span class="col s12 m12 l12">
+     <strong>Species:</strong>
+     <%= @complaint.species %>
+    </span>
+
+
+<span class="col s12 m12 l12">
   <strong>Status:</strong>
   <%= @complaint.status %>
-</p>
-<p>
+</span>
+
+ <span class="col s12 m12 l12">
 <strong>location:</strong>
 <div class="map-show">
   <div id="latitude" style="display:none;">
@@ -29,24 +33,38 @@
   <% query = @latitude.to_s+","+@longitude.to_s %>
     <% first_result = Geocoder.search(query).first %>
 
-  <div id="city_name" >
+
+    <div id="city_name" >
+
    <%= @city_name %>
   </div> 
+</div>
+</span>
+</div>
+</div>
+</div>
 
+<div class="row">
+        <div class="col s12">
   <p id="heading1">Users location</p>
   <div id="map-canvas3" style="border:1px solid red; height:400px;">
 
   </div>
-</div>
-</p>
+  </div>
+      </div>
+
+
 <% if current_user.role == "rescuer" %>
 <%= render('rescuecompts/form') %>
 <% end %>
-<br>
-<% if current_user.id == @complaint.user_id%>
-<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
-<%= link_to 'Back', complaints_path %>
-<% else %>
+</div>
 
-<% end %>
 
+
+
+<div class="row">
+        <div class="col s12">
+<%= link_to 'Edit', edit_complaint_path(@complaint),:class=>"waves-effect waves-light btn  yellow darken-1" %> 
+<%= link_to 'Back', complaints_path ,:class=>"waves-effect waves-light btn  blue darken-1" %>
+</div>
+</div>

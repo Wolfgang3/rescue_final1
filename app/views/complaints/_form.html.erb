@@ -1,3 +1,5 @@
+<div class="container">
+<div class="row">
 <%= form_for(@complaint,:html=>{:name=>"f",:onsubmit=>"getLocation(event);"})  do |f| %>
   <% if @complaint.errors.any? %>
     <div id="error_explanation">
@@ -11,12 +13,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field input-field" >
     <%= f.label :species %><br>
-    <%= f.select :species, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']] %>
+    <%= f.select :species, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']],{:class=>"browser-default"}%>
   </div>
+
+  
   <div>
-  Image upload: <%= f.file_field :species_image %>
+  Image upload: <%= f.file_field :species_image  %>
   </div>
 
 <!-- get latitude and longitude -->
@@ -30,4 +34,5 @@
     <%= f.submit %>
   </div>
 <% end %>
-
+</div>
+</div>

@@ -1,24 +1,27 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
+<div class="container">
+<div class="row">
+<h2 class="center-align">Sign up</h2>
+  <div class="field input-field col s12 l12 m12">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="field">
+  <div class="field input-field col s12 l6 m6">
         <%= f.label :name %><br />
         <%= f.text_field :name, autofocus: true %>
       </div>
 
-  <div class="field">
+  <div class="field input-field col s12 l6 m6">
     <%= f.label :phno %><br />
     <%= f.text_field :phno, autofocus: true %>
   </div>
 
-  <div class="field">
+  <div class="field input-field col s12 l6 m6">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -26,36 +29,40 @@
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
-  <div class="field">
+  <div class="field input-field col s12 l6 m6">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div>
+  <div class="col s12 l6 m6">
   Image upload: <%= f.file_field :avatar %>
   </div>
 
-  <div class="field">
+  <div class="field col s12 l6 m6">
         <%= f.label :role %> as: <br />
         <%= f.select :role, [['user','user'],['rescuer','rescuer']] %>
-    </div>
- <div id="hidden" style="display: none;">
-   <div class="field">
+  </div>
+  <div id="hidden" style="display: none;">
+   <div class="field input-field col s12 l6 m6">
         <%= f.label :specialized %> in catching: <br />
         <%= f.select :specialized, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']] %>
         
     </div>
 
-    <div class="field">
+    <div class="field input-field col s12 l6 m6">
         reference code of rescuer reffered by<br /> 
         <%= f.number_field :referred_by, autofocus: true %>
     </div>
 
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+ <div class="actions col s12 l6 m6">
+    <%= f.submit "Sign up", class:"btn blue large btn-large" %>
   </div>
+</div>
+</div>
+
+ 
+
 <% end %>
 
-<%= render "devise/shared/links" %>
+

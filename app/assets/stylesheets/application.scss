@@ -14,7 +14,7 @@
  *= require_self
  */
 @import "materialize/components/color";
-$primary-color: color("green", "accent-3") !default;
+$primary-color: color("green" , "accent-4") !default;
 @import "materialize";
 @import "materialize/extras/nouislider";
 
@@ -58,3 +58,16 @@ $primary-color: color("green", "accent-3") !default;
 #height-min{
 	min-height: 580px;
 }
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  
+     
