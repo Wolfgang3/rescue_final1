@@ -1,0 +1,5 @@
+
+ <%= form_for(@rescue_complaint,:html=>{:name=>"f",:onsubmit=>"post_attend(event);"}) do |f| %>
+   <%= f.hidden_field  :complaint_id ,:value => @complaint_id %>
+    <%= f.submit "attend complaint", class: "btn btn-blue btn-lg" %>
+<% end %> 

@@ -1,0 +1,28 @@
+<h1>User Profile</h1>
+<div class="user-profile">
+
+<div id="user-profile-main">
+	<span id="profile-details" class="font2">
+		username : <%= @user.name %><br>
+		email : <%= @user.email %><br>
+		phone num : <%= @user.phno %><br>	
+	</span>
+	<% if @user.role=="rescuer" %>
+		<div id="latitude" style="display:none;">
+		<%=  Location.find_by_user_id(@user.id).latitude %>
+		</div>
+
+		<div id="longitude" style="display:none;">
+		<%=  Location.find_by_user_id(@user.id).longitude %>
+	
+		</div> 
+		<p id="heading1">Users location</p>
+		<div id="map-canvas3" style="border:1px solid red; height:400px;">
+
+		</div>
+	<% end %>
+</div>
+
+
+
+</div>

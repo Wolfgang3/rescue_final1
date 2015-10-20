@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+<h2>Complaint Details </h2>
+<p>
+  <strong>User name:</strong>
+  <%= link_to "#{User.find(@complaint.user_id).name}", user_view_path(:id => User.find(@complaint.user_id).id) %> 
+</p>
+<p>
+<%= image_tag @complaint.species_image.url(:thumb) %>
+</p>
+<p>
+  <strong>Species:</strong>
+  <%= @complaint.species %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @complaint.status %>
+</p>
+<p>
+<strong>location:</strong>
+<div class="map-show">
+  <div id="latitude" style="display:none;">
+  <%= @latitude %>
+  </div>
+
+  <div id="longitude" style="display:none;">
+  <%= @longitude %>
+  </div> 
+  <% query = @latitude.to_s+","+@longitude.to_s %>
+    <% first_result = Geocoder.search(query).first %>
+
+  <div id="city_name" >
+   <%= @city_name %>
+  </div> 
+
+  <p id="heading1">Users location</p>
+  <div id="map-canvas3" style="border:1px solid red; height:400px;">
+
+  </div>
+</div>
+</p>
+<% if current_user.role == "rescuer" %>
+<%= render('rescuecompts/form') %>
+<% end %>
+<br>
+<% if current_user.id == @complaint.user_id%>
+<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
+<%= link_to 'Back', complaints_path %>
+<% else %>
+
+<% end %>
+

@@ -1,0 +1,132 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<!-- ++++++++++ Listing of all notified Complaints to the rescuer +++++++++++++-->
+<% if current_user.role=="rescuer" %>
+
+<h1>Listing of all notified Complaints</h1>
+<% if @complaints_filter.size >0  %>
+<table>
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Species</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints_filter.each do |complaint| %>
+      <tr>
+      <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id) %> </td>
+        <td><%= complaint.species %></td>
+        <td><%= complaint.created_at.strftime("%d, %B, %Y")%></td>
+        <td><% if complaint.status == false %>
+            <%= "not yet attended" %>
+            <% else %>
+            <%= "help is on the way" %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', complaint %></td>
+      </tr>
+    <% end %>
+  </tbody>
+ <% else %>
+  <h4>N0 notified Complaints</h4>
+<% end %>
+
+</table>
+
+  <!--  ++++++++++  listing of all complaints rescuer is attending to  ++++++++++ -->
+  <h1>Listing of all your attending Complaints</h1>
+  <% if @complaints_attending.size >0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Species</th>
+        <th>Date</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @complaints_attending.each do |complaint| %>
+        <tr>
+           <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id) %> </td></td>
+          <td><%= complaint.species %></td>
+          <td><%= complaint.created_at %></td>
+          <td><%= link_to 'Show', complaint %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+    <h4>N0 Complaints to attend</h4>
+  <% end %>
+
+<% end %>
+<!-- ++++++++++ Listing of all your Complaints +++++++++++++-->
+<h1>Listing of all your Complaints</h1>
+<% if @complaints.size >0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Species</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Rescuer's name</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints.each do |complaint| %>
+      <tr>
+        <td><%= complaint.species %></td>
+        <td><%= complaint.created_at.strftime("%d, %B, %Y") %></td>
+        <td><% if complaint.status == false %>
+            <%= "not yet attended" %>
+            <% else %>
+            <%= "help is on the way" %>
+            <% end %>
+        </td>
+
+        <td><% if complaint.status == false %>
+            <%= "" %>
+            <% else %>
+      
+            <%= link_to "#{User.find(complaint.rescuer_id).name}",  user_view_path(:id => complaint.rescuer_id)%> 
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', complaint %></td>
+        <td><%= link_to 'Edit', edit_complaint_path(complaint),method: :get %></td>
+        <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <h4>NO complaints registered by you</h4>
+<% end %>
+
+<br>
+<!-- for the user -->
+<% if user_signed_in? %>
+<%= link_to "new complaint",new_complaint_path %> 
+<br>
+<%= link_to "See all your complaints",complaints_path %> 
+<br>
+
+  <% if current_user.role == "rescuer" %>
+  <%= render('location/form') %>
+  <br>
+
+  <% end %>
+<% end %>
+
+<br>
+

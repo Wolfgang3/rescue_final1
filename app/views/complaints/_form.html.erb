@@ -1,0 +1,33 @@
+<%= form_for(@complaint,:html=>{:name=>"f",:onsubmit=>"getLocation(event);"})  do |f| %>
+  <% if @complaint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@complaint.errors.count, "error") %> prohibited this complaint from being saved:</h2>
+
+      <ul>
+      <% @complaint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :species %><br>
+    <%= f.select :species, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']] %>
+  </div>
+  <div>
+  Image upload: <%= f.file_field :species_image %>
+  </div>
+
+<!-- get latitude and longitude -->
+  <%= f.hidden_field  :latitude %>
+   <%= f.hidden_field  :longitude %>
+
+
+ <%= f.hidden_field  :city_name %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

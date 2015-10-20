@@ -1,0 +1,7 @@
+
+ <%= form_for(@location,:html=>{:name=>"f",:onsubmit=>"getLocation2(event);"}) do |f| %>
+   <%= f.hidden_field  :latitude %>
+   <%= f.hidden_field  :longitude %>
+   <%= f.hidden_field  :city_name %>
+    <%= f.submit "Publish location", class: "btn btn-blue btn-lg" %>
+<% end %> 

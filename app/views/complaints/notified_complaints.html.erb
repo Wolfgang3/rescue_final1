@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Complaints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Species</th>
+      <th>Place</th>
+      <th>Status</th>
+      <th>Choice</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints.each do |complaint| %>
+       <% if complaint.status == false %>
+      <tr>
+        <td> complaint.created_at </td>
+        <td><%= complaint.species %></td>
+        <td><% if complaint.status == false %>
+            <%= "not yet attended" %>
+            <% else %>
+            <%= "help is on the way" %>
+            <% end %>
+        </td>
+
+        <td><% if complaint.status == false %>
+            <%= "" %>
+            <% else %>
+      
+            <%= link_to "#{complaint.rescuer_id.name}",  user_view_path(:id => complaint.user.id)%> 
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', complaint %></td>
+        <td><%= link_to 'save', edit_complaint_path(complaint),method: :get %></td>
+       
+         </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
