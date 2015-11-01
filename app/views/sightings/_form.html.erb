@@ -1,12 +1,12 @@
 <div class="container">
 <div class="row">
-<%= form_for(@complaint,:html=>{:name=>"f",:onsubmit=>"getLocation(event);"})  do |f| %>
-  <% if @complaint.errors.any? %>
+<%= form_for(@sighting,:html=>{:name=>"f",:onsubmit=>"getLocation(event);"})  do |f| %>
+  <% if @sighting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@complaint.errors.count, "error") %> prohibited this complaint from being saved:</h2>
+      <h2><%= pluralize(@sighting.errors.count, "error") %> prohibited this sighting from being saved:</h2>
 
       <ul>
-      <% @complaint.errors.full_messages.each do |message| %>
+      <% @sighting.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

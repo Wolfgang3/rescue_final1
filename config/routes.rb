@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reports
   resources :rescuecompts
   get 'location/map'
 
@@ -10,11 +11,13 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  resources :complaints
+  resources :sightings
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-root to: "complaints#index"
+root to: "sightings#index"
+
+  get 'sightings/snakes_info'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

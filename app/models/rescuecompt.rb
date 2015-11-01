@@ -1,4 +1,4 @@
 class Rescuecompt < ActiveRecord::Base
 		belongs_to :user
-	belongs_to :complaint
+	belongs_to :sighting
 end

@@ -5,17 +5,18 @@ end
  def create
       @rescue_complaint = Rescuecompt.new
       @rescue_complaint.user_id = current_user.id
-      @rescue_complaint.complaint_id = current_user.id
+      @rescue_complaint.sighting_id = current_user.id
      @person = Rescuecompt.where(:user_id => current_user.id).first 
      if @person
         @user= @person.update(location_params)
         if @user
           flash[:alert]= "Complaint will be attened by you"
 
-          @complaint_id=@person.complaint_id;
-          @save_complaint = Complaint.where(:id => @complaint_id).first
+          @complaint_id=@person.sighting_id;
+          @save_complaint = Sighting.where(:id => @complaint_id).first
           @save_complaint.rescuer_id=current_user.id 
           @save_complaint.status=true
+        
           @save_complaint.save
 
             redirect_to root_path
@@ -26,7 +27,7 @@ end
         @user= Rescuecompt.create(location_params)
         @user.user_id = current_user.id 
 
-    @complaint_id=@user.complaint_id;
+    @complaint_id=@user.sighting_id;
       if @user.save
         flash[:alert]= "This complaint will be attened by you"
 
@@ -41,6 +42,6 @@ end
 
   
   def location_params
-    params.require(:rescuecompt).permit(:complaint_id)
+    params.require(:rescuecompt).permit(:sighting_id)
   end
 end

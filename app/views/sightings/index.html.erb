@@ -11,7 +11,7 @@
       </ul>
     </div>
     <div id="test1" class="col s12">
-      <h1>Listing of all notified Complaints</h1>
+      <h1>Listing of all notified sightings</h1>
 <% if @complaints_filter.size >0  %>
 <table class="highlight">
   <thead>
@@ -27,7 +27,7 @@
   <tbody>
     <% @complaints_filter.each do |complaint| %>
       <tr>
-      <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id) %> </td>
+      <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id), method: :get  %> </td>
         <td><%= complaint.species %></td>
         <td><%= complaint.created_at.strftime("%d, %B, %Y")%></td>
         <td><% if complaint.status == false %>
@@ -41,12 +41,12 @@
     <% end %>
   </tbody>
  <% else %>
-  <h4>N0 notified Complaints</h4>
+  <h4>N0 notified sightings</h4>
 <% end %>
 </table>
     </div>
-    <div id="test2" class="col s12">  <!--  ++++++++++  listing of all complaints rescuer is attending to  ++++++++++ -->
-  <h1>Listing of all your attending Complaints</h1>
+    <div id="test2" class="col s12">  <!--  ++++++++++  listing of all sightings rescuer is attending to  ++++++++++ -->
+  <h1>Listing of all your attending sightings</h1>
   <% if @complaints_attending.size >0 %>
   <table class="highlight">
     <thead>
@@ -61,48 +61,32 @@
     <tbody>
       <% @complaints_attending.each do |complaint| %>
         <tr>
-           <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id) %> </td></td>
+           <td><%= link_to "#{User.find(complaint.user_id).name}", user_view_path(:id => User.find(complaint.user_id).id), method: :get  %> </td></td>
           <td><%= complaint.species %></td>
-          <td><%= complaint.created_at %></td>
-          <td><%= link_to 'Show', complaint ,:class=>"waves-effect waves-light btn  blue darken-1"%></td>
+          <td><%= complaint.created_at.strftime("%d, %B, %Y") %></td>
+          <td><%= link_to 'Show', complaint ,:class=>"waves-effect waves-light btn  blue darken-1" , method: :get%></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <% else %>
-    <h4>N0 Complaints to attend</h4>
+    <h4>N0 sightings to attend</h4>
   <% end %></div>
    
   </div>
 
 
-<p id="notice"><%= notice %></p>
-
-
-
-<!-- ++++++++++ Listing of all notified Complaints to the rescuer +++++++++++++-->
-
-
-
-
-
-
-
-
-
+<!-- ++++++++++ Listing of all notified sightings to the rescuer +++++++++++++-->
 <% end %>
 
 
 
 <div class="container">
 <div class="row">
-  
-
 <br>
-
-<!-- ++++++++++ Listing of all your Complaints +++++++++++++-->
-<h1 class="center-align">Listing of all your Complaints</h1>
-<% if @complaints.size >0 %>
+<!-- ++++++++++ Listing of all your sightings +++++++++++++-->
+<h1 class="center-align">Listing of all your sightings</h1>
+<% if @sighting.size >0 %>
 <table class="highlight">
   <thead>
     <tr>
@@ -115,7 +99,7 @@
   </thead>
 
   <tbody>
-    <% @complaints.each do |complaint| %>
+    <% @sighting.each do |complaint| %>
       <tr>
         <td><%= complaint.species %></td>
         <td><%= complaint.created_at.strftime("%d, %B, %Y") %></td>
@@ -130,24 +114,24 @@
             <%= "" %>
             <% else %>
       
-            <%= link_to "#{User.find(complaint.rescuer_id).name}",  user_view_path(:id => complaint.rescuer_id)%> 
+            <%= link_to "#{User.find(complaint.rescuer_id).name}",  user_view_path(:id => complaint.rescuer_id) , method: :get %> 
             <% end %>
         </td>
-        <td><%= link_to 'Show', complaint , :class=>"waves-effect waves-light btn  blue darken-1"%></td>
-        <td><%= link_to 'Edit', edit_complaint_path(complaint),method: :get, :class=>"waves-effect waves-light btn  yellow darken-1" %></td>
+        <td><%= link_to 'Show', complaint , :class=>"glyphicon glyphicon-search"%></td>
+        <td><%= link_to 'Edit', edit_sighting_path(complaint),method: :get, :class=>"waves-effect waves-light btn  yellow darken-1" %></td>
         <td><%= link_to 'Destroy', complaint, method: :delete, data: { confirm: 'Are you sure?' } , :class=>"waves-effect waves-light btn red darken-1"%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <% else %>
-  <h4>NO complaints registered by you</h4>
+  <h4>NO sightings registered by you</h4>
 <% end %>
 
 <br>
 <!-- for the user -->
 <% if user_signed_in? %>
-<%= link_to "new complaint",new_complaint_path, :class=>"waves-effect waves-light btn  blue darken-1" %> 
+<%= link_to "new sighting",new_sighting_path, :class=>"waves-effect waves-light btn  blue darken-1" , method: :get %> 
 <br>
 
 </div>
@@ -156,7 +140,7 @@
   <% if current_user.role == "rescuer" %>
   <%= render('location/form') %>
   <br>
-
+  <%= link_to "Generate report",new_report_path ,class: "btn btn-blue btn-lg" , method: :get%> 
   <% end %>
 <% end %>
 

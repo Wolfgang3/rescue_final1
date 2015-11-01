@@ -14,13 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-//= require jquery
 //= require materialize-sprockets
 
 //= require materialize/extras/nouislider
 
-//= require jquery
-//= require bootstrap-sprockets
 
 //++++++++++++++++ for rescuers fields ++++++++++++++++++
 if ( document.getElementById("user_role")!= null) {
@@ -38,6 +35,14 @@ $(function(){
     });
 });
 
+//++++++++++++++++++ for messages ++++++++++++++++++++
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#notice_wrapper").fadeOut("slow", function() {
+            $(this).remove();
+        })
+    }, 2500 );
+});
 
 
 //++++++++++++++++ for gps map ++++++++++++++++
@@ -97,7 +102,8 @@ $(document).ready(function() {
     $('.slider').slider({full_width: true});
     $(".button-collapse").sideNav();
     $('select').material_select();
-     $('ul.tabs').tabs();
+    $('ul.tabs').tabs();
+    $('.materialboxed').materialbox();
 
 });
 
@@ -148,8 +154,8 @@ function run(position){
           for (var i = 0; i < results.length; i++) {
             if (results[i].types[0] === "locality") {
               city = results[i].address_components[0].short_name;
-                 document.getElementById('complaint_city_name').value = city;
-              console.log(document.getElementById('complaint_city_name').value);
+                 document.getElementById('sighting_city_name').value = city;
+              console.log(document.getElementById('sighting_city_name').value);
               var state = results[i].address_components[2].short_name;
               $("input[name='location']").val(city + ", " + state);
             }
@@ -166,8 +172,8 @@ function showPosition(position) {
     //alert(position.coords.latitude);
     //alert(position.coords.longitude);
 run(position);
-    document.getElementById('complaint_latitude').value = position.coords.latitude;
-    document.getElementById('complaint_longitude').value = position.coords.longitude;
+    document.getElementById('sighting_latitude').value = position.coords.latitude;
+    document.getElementById('sighting_longitude').value = position.coords.longitude;
 
 //document.getElementById('complaint_city_name').value =first_result.city ;
     
@@ -175,7 +181,7 @@ run(position);
     setTimeout(doSomething, 3000);
 
 function doSomething() {
-  document.getElementById('new_complaint').submit();
+  document.getElementById('new_sighting').submit();
 }
 
 }

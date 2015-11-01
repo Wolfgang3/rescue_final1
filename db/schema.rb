@@ -11,9 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151020095845) do
+ActiveRecord::Schema.define(version: 20151028205931) do
 
-  create_table "complaints", force: :cascade do |t|
+  create_table "locations", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
+    t.string   "city_name",  limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "sighting_id", limit: 4
+    t.string   "details",     limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "rescuecompts", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "sighting_id", limit: 4
+    t.string   "status",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "sightings", force: :cascade do |t|
     t.string   "species",                    limit: 255
     t.boolean  "status",                                 default: false
     t.string   "city_name",                  limit: 255
@@ -27,23 +52,6 @@ ActiveRecord::Schema.define(version: 20151020095845) do
     t.integer  "species_image_file_size",    limit: 4
     t.datetime "species_image_updated_at"
     t.integer  "rescuer_id",                 limit: 4
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
-    t.string   "city_name",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "rescuecompts", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.integer  "complaint_id", limit: 4
-    t.string   "status",       limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
   create_table "users", force: :cascade do |t|

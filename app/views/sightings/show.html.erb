@@ -1,23 +1,23 @@
 <div class="container">
 <div class="row">
 <p id="notice"><%= notice %></p>
-<h2 class="center-align">Complaint Details </h2>
+<h2 class="center-align">Sighting Details </h2>
 
 <div class="col s12 m6 l6">
-<%= image_tag @complaint.species_image.url(:thumb) %>
+<%= image_tag @sighting.species_image.url(:thumb) %>
 </div>
 
 <div class="col s12 m6 l6">
   <div class="row">
     <span class="col s12 m12 l12">
      <strong>Species:</strong>
-     <%= @complaint.species %>
+     <%= @sighting.species %>
     </span>
 
 
 <span class="col s12 m12 l12">
   <strong>Status:</strong>
-  <%= @complaint.status %>
+  <%= @sighting.status %>
 </span>
 
  <span class="col s12 m12 l12">
@@ -64,7 +64,7 @@
 
 <div class="row">
         <div class="col s12">
-<%= link_to 'Edit', edit_complaint_path(@complaint),:class=>"waves-effect waves-light btn  yellow darken-1" %> 
-<%= link_to 'Back', complaints_path ,:class=>"waves-effect waves-light btn  blue darken-1" %>
+<%= link_to 'Edit', edit_sighting_path(@sighting),:class=>"waves-effect waves-light btn  yellow darken-1" %> 
+<%= link_to 'Back', sightings_path ,:class=>"waves-effect waves-light btn  blue darken-1" %>
 </div>
 </div>

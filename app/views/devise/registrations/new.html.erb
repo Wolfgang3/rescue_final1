@@ -35,18 +35,19 @@
   </div>
 
   <div class="col s12 l6 m6">
-  Image upload: <%= f.file_field :avatar %>
+  Profile picture: <%= f.file_field :avatar %>
   </div>
 
   <div class="field col s12 l6 m6">
         <%= f.label :role %> as: <br />
         <%= f.select :role, [['user','user'],['rescuer','rescuer']] %>
+
   </div>
   <div id="hidden" style="display: none;">
    <div class="field input-field col s12 l6 m6">
-        <%= f.label :specialized %> in catching: <br />
+        <%= f.label :specialized %>  <br />
         <%= f.select :specialized, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']] %>
-        
+       
     </div>
 
     <div class="field input-field col s12 l6 m6">

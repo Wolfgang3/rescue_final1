@@ -1,0 +1,12 @@
+<%= simple_form_for(@report) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+        <%= f.input :sighting_id, collection: Sighting.where(:rescuer_id => current_user.id).map {|p| [User.find(p).name,p.id]}, as: :select %>
+    <%= f.input :details %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
