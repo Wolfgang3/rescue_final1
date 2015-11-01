@@ -47,7 +47,7 @@ class SightingsController < ApplicationController
     @user = User.new(user_params)
     @sighting = Sighting.new(complaint_params)
     #@sighting= @sighting.update(complaint_params)
-    
+    @sighting.user_id=current_user.id
     respond_to do |format|
       if @sighting.save
         format.html { redirect_to @sighting, notice: 'Sighting was successfully created.' }

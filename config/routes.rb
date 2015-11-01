@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'gis/show'
+
+  get 'gis/show2'
+
   resources :reports
   resources :rescuecompts
   get 'location/map'

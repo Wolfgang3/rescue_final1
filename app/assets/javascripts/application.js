@@ -245,3 +245,17 @@ function post_attend(e) {
 }
 
 
+
+function showa(){
+  document.getElementById("test1").style.display="none";
+  document.getElementById("test2").style.display="block";
+}
+
+function showb(){
+  document.getElementById("test2").style.display="none";
+  document.getElementById("test1").style.display="block";
+}
+
+function hideb(){
+  document.getElementById("test2").style.display="none";
+}

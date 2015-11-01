@@ -70,8 +70,8 @@ $primary-color: color("green" , "accent-4") !default;
   }
 
   img.responsive-img, video.responsive-video {
-    max-width: 100%;
-    height: auto;
+      max-width: 125%;
+    height: 47px;
 }
 
 #img-avatar {
@@ -134,3 +134,9 @@ font-size:15px;
 margin-top: 80px;
   margin-bottom: 80px;
 }
+
+.btn-center{     margin-left: 50%; }
+.tabs-border{
+    border-style: solid;
+    border-width: 1px; 
+    }

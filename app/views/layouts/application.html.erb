@@ -37,8 +37,9 @@
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down user-data">
         <% if !user_signed_in? %>
+        <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
         <li><%= link_to "New sighting", new_sighting_path, class: "btn btn-link"  %></li>
-        <li><%= link_to "Sign up for user", new_user_registration_path, class: "btn btn-link" %></li>
+        <li><%= link_to "Sign up for user", new_user_registration_path, class: "btn btn-link", method: :get%></li>
         <li><%= link_to "log in for user", new_user_session_path, class: "btn btn-link" %></li>
         <% else %>
         <li id="img-avatar">
@@ -48,12 +49,14 @@
        Welcome <%= current_user.name %>
        
        </li>
-        
+      <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
+        <li ><%= link_to "edit your account", edit_user_registration_path, class: "btn btn-link" %></li>
         <li><%= link_to "log out", destroy_user_session_path, :method => :delete, class: "btn btn-link" %></li>
         <% end %>
        </ul>
        <ul class="side-nav" id="mobile-demo">
       <% if !user_signed_in? %>
+       <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
         <li><%= link_to "New sighting", new_sighting_path %></li>
         <li><%= link_to "Sign up for user", new_user_registration_path %></li>
         <li><%= link_to "log in for user", new_user_session_path %></li>
@@ -63,10 +66,10 @@
         </li>
         <li class="user-text">
        Welcome <%= current_user.name %>
-       
        </li>
-        
-        <li><%= link_to "log out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
+        <li ><%= link_to "edit your account", edit_user_registration_path , class: "btn btn-link"%></li>
+        <li><%= link_to "log out", destroy_user_session_path, :method => :delete, class: "btn btn-link" %></li>
         <% end %>
       </ul>
     </div>

@@ -1,0 +1,144 @@
+
+<!-- ++++++++++++++++++++++++++++++ -->
+<body onload="hideb()">
+<div class="container" >
+<div class="row">
+
+    <div class="col s12 ">
+      <ul class="tabs ">
+        <li class="tab col s6"><a  onClick="showb();" >Screen 1</a></li>
+        <li class="tab col s6"><a  onClick="showa();">Screen 2</a></li>
+        
+      </ul>
+    </div>
+  <div id="test1" class="col s12 tabs-border">
+      <h3 class="center-align">Location of all sightings</h3>
+		<div id="map1" style="border:1px solid red; height:500px;"></div>
+	<div style="display:none">
+  		<%= image_tag("missing.jpg",:id => "missing") %>
+	</div>
+	  <script type="text/javascript">
+		  var reports = new Array();
+		  var report;
+		  var tmp;
+		  <% count = 0
+		  @sighting.each do |report|  %>
+		  report = new Array();
+		  report["species"] = "<%= report.species  %>";
+		  report["lat"] = <%= report.latitude %>;
+		  report["lng"] = <%= report.longitude %>;
+		  tmp= "<%= report.species_image.url(:thumb) %>";
+		  if(tmp=="missing.jpg")
+		  {
+		  	//console.log("sd");
+		  	tmp= document.getElementById("missing").src;
+		  }
+		  //console.log(tmp);
+		  report["image"] = tmp;
+		  reports[<%= count %>] = report;
+		  <% count +=1 end %>
+		  //load_list(reports);
+
+	    var map = new google.maps.Map(document.getElementById('map1'), {
+	      zoom: 10,
+	      center: new google.maps.LatLng(15.408186, 74.194498),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    });
+
+	    var infowindow = new google.maps.InfoWindow();
+		
+	    var marker, i;
+
+	    for (i = 0; i < reports.length; i++) {  
+	      var image = 'cobra.jpg';
+		  marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(reports[i]["lat"], reports[i]["lng"]),
+	        map: map,
+			icon:reports[i]["image"],
+	            
+			
+	      });
+
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(reports[i]["species"]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	    }
+	  </script>
+  	</div>
+  </div>
+
+
+  <div id="test2" class="col s12 tabs-border"> 
+  <h3 class="center-align">Popular location of species</h3>
+  	<div id="map2" style="border:1px solid red; height:500px;"></div>
+	<div style="display:none">
+
+	  <%= image_tag("kc.png",:id => "kc") %>
+	  <%= image_tag("cobra.png",:id => "cobra") %>
+	  <%= image_tag("RV.png",:id => "RV") %>
+	  <%= image_tag("krait.png",:id => "krait") %>
+	  <%= image_tag("saw.png",:id => "saw") %>
+	</div>
+	  <script type="text/javascript">
+
+	  onmap();
+	  function onmap(){
+
+	    var locations = [
+	    ['King Cobra', 15.609679, 74.06487, document.getElementById("kc").src],//sattari
+		  ['Cobra', 15.549053, 74.071131, document.getElementById("cobra").src],
+		  ['Russells Viper', 15.575292, 73.990905, document.getElementById("RV").src],
+		  
+	    ['Russells Viper', 15.28297, 74.020964,document.getElementById("RV").src], //margao
+		  ['Cobra', 15.285645, 74.003901,document.getElementById("cobra").src],
+	    ['Common Krait', 15.271645, 73.998226,document.getElementById("krait").src],
+		 
+		  ['Russells Viper', 15.398226, 74.026725,document.getElementById("RV").src], //ponda
+		  ['Cobra', 15.386098, 74.030572,document.getElementById("cobra").src],
+	    ['Common Krait', 15.411068, 74.00334,document.getElementById("krait").src],
+	    ['Saw Scaled Viper', 15.384794, 73.996817,document.getElementById("saw").src],
+		  
+		  ['King Cobra', 15.117129, 74.205804,document.getElementById("kc").src], //netravali
+		  ['Cobra', 15.10672, 74.160631,document.getElementById("cobra").src],
+	    ['Common Krait', 15.131056, 74.150373,document.getElementById("krait").src],
+	    ['Saw Scaled Viper', 15.112347, 74.125771,document.getElementById("saw").src]
+	    ];
+
+	    var map = new google.maps.Map(document.getElementById('map2'), {
+	      zoom: 10,
+	      center: new google.maps.LatLng(15.408186, 74.194498),
+	      mapTypeId: google.maps.MapTypeId.ROADMAP
+	    });
+
+	    var infowindow = new google.maps.InfoWindow();
+		
+	    var marker, i;
+
+	    for (i = 0; i < locations.length; i++) {  
+	      var image = 'cobra.jpg';
+		  marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	        map: map,
+			icon:locations[i][3],
+	            
+			
+	      });
+
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(locations[i][0]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	    }
+	}
+	  </script>
+  </div>
+
+</div>
+</div>
+</div>
+</body>
