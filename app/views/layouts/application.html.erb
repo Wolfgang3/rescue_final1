@@ -53,15 +53,21 @@
         <% end %>
        </ul>
        <ul class="side-nav" id="mobile-demo">
-       <% if !user_signed_in? %>
-
-       <%= link_to "Sign up for user", new_user_registration_path %> or <%= link_to "log in for user", new_user_session_path %> <br>
-       <% else %>
-       <%= image_tag current_user.avatar.url(:thumb), class:"circle responsive-img" %>
+      <% if !user_signed_in? %>
+        <li><%= link_to "New sighting", new_sighting_path %></li>
+        <li><%= link_to "Sign up for user", new_user_registration_path %></li>
+        <li><%= link_to "log in for user", new_user_session_path %></li>
+        <% else %>
+        <li id="img-avatar">
+        <%= image_tag current_user.avatar.url(:thumb), class:"circle responsive-img" %>
+        </li>
+        <li class="user-text">
        Welcome <%= current_user.name %>
-       Signed in as <%= current_user.email %>.
-       <%= link_to "log out", destroy_user_session_path, :method => :delete %>
-       <% end %>
+       
+       </li>
+        
+        <li><%= link_to "log out", destroy_user_session_path, :method => :delete %></li>
+        <% end %>
       </ul>
     </div>
   </nav>
@@ -75,7 +81,7 @@
  
 
 
- 
+
  <%= image_tag("img-foot.png", :class => "responsive-img footer-img") %>
  <footer class="page-footer">
 
@@ -84,8 +90,8 @@
       <div class="col l6 s12">
         <h5 class="white-text">
           <address>
-  <strong>Full Name</strong><br>
-  <a href="mailto:#">first.last@example.com</a>
+  <strong>Animal Rescue Goa</strong><br>
+  
 </address>
         </h5>
         <p class="grey-text text-lighten-4">
@@ -103,12 +109,26 @@
         </p>
       </div>
       <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
+        <h5 class="white-text">Emergency Contact</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+          <li>
+            <address>
+              <strong>Forest Departement</strong><br>
+              <abbr title="Phone">P:</abbr> (123) 456-7890
+          </address>
+          </li>
+          <li>
+            <address>
+              <strong>Fire Departement</strong><br>
+              <abbr title="Phone">P:</abbr> (123) 456-7890
+            </address>
+          </li>
+          <li>
+            <address>
+              <strong>Animal Rescue Org</strong><br>
+              <abbr title="Phone">P:</abbr> (123) 456-7890
+            </address>
+          </li>
         </ul>
       </div>
     </div>
@@ -116,7 +136,7 @@
   <div class="footer-copyright">
     <div class="container">
     © 2014 Copyright Text
-    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+   
     </div>
   </div>
  </footer>
