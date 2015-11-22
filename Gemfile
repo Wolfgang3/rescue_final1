@@ -25,7 +25,7 @@ gem 'simple_form'
 gem 'materialize-sass', '~> 0.97.1'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 
-
+gem 'mysql2', '0.3.20'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use mysql as the database for Active Record
@@ -68,16 +68,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  gem 'mysql2', '0.3.20'
 end
-
-group :production do
-	
-	gem 'rails_12factor', '~> 0.0.3'
-end
-
-
 
 
 
