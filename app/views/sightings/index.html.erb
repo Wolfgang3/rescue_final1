@@ -45,6 +45,40 @@
   <h4>N0 notified sightings</h4>
 <% end %>
 </table>
+
+<% if @complaints_filter2.size >0  %>
+<table class="highlight">
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Species</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints_filter2.each do |complaint| %>
+      <tr>
+      <td><%= complaint.user_name %> </td>
+        <td><%= complaint.species %></td>
+        <td><%= complaint.created_at.strftime("%d, %B, %Y")%></td>
+        <td><% if complaint.status == false %>
+            <%= "not yet attended" %>
+            <% else %>
+            <%= "help is on the way" %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', complaint , :class=>"glyphicon glyphicon-search",method: :get%></td>
+      </tr>
+    <% end %>
+  </tbody>
+ <% else %>
+  <h4>N0 notified sightings</h4>
+<% end %>
+</table>
+
     </div>
     <div id="test2" class="col s12 tabs-border">  <!--  ++++++++++  listing of all sightings rescuer is attending to  ++++++++++ -->
   <h3 class="center-align">Listing of all your attending sightings</h3>

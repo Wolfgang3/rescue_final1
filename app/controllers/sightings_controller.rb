@@ -12,6 +12,8 @@ class SightingsController < ApplicationController
 
  @complaints_filter= Sighting.where("user_id != ?",current_user.id).where("status != ?",true)
 
+ @complaints_filter2= Directsighting.where("status != ?",true)
+
   @complaints_attending= Sighting.where(:rescuer_id => current_user.id)
   end
 
@@ -29,6 +31,7 @@ class SightingsController < ApplicationController
     @latitude = Sighting.find(params[:id]).latitude
     @longitude = Sighting.find(params[:id]).longitude
     @city_name = Sighting.find(params[:id]).city_name
+
   end
 
   # GET /complaints/new

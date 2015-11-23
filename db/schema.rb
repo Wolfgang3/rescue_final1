@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151028205931) do
+ActiveRecord::Schema.define(version: 20151123162739) do
+
+  create_table "directsightings", force: :cascade do |t|
+    t.string   "species",                    limit: 255
+    t.boolean  "status",                                 default: false
+    t.string   "city_name",                  limit: 255
+    t.string   "user_name",                  limit: 255
+    t.string   "email",                      limit: 255
+    t.string   "phno",                       limit: 255
+    t.float    "latitude",                   limit: 24
+    t.float    "longitude",                  limit: 24
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "species_image_file_name",    limit: 255
+    t.string   "species_image_content_type", limit: 255
+    t.integer  "species_image_file_size",    limit: 4
+    t.datetime "species_image_updated_at"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

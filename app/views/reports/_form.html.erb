@@ -2,7 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-        <%= f.input :sighting_id, collection: Sighting.where(:rescuer_id => current_user.id).map {|p| [User.find(p).name,p.id]}, as: :select %>
+  <% Sighting.where(id:"3").first.user_id %>
+
+        <%= f.input :sighting_id, collection: Sighting.where(:rescuer_id => current_user.id).map {|p|[ User.where(id:Sighting.where(id:p.id).first.user_id).first.name,p.id]}, as: :select %>
     <%= f.input :details %>
   </div>
 

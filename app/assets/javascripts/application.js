@@ -175,6 +175,7 @@ run(position);
     document.getElementById('sighting_latitude').value = position.coords.latitude;
     document.getElementById('sighting_longitude').value = position.coords.longitude;
 
+
 //document.getElementById('complaint_city_name').value =first_result.city ;
     
     console.log(position.coords.latitude)
@@ -258,4 +259,57 @@ function showb(){
 
 function hideb(){
   document.getElementById("test2").style.display="none";
+}
+
+
+
+// ============================= for direct
+function getLocation3(e) {
+    e.preventDefault();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition3);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }    
+}
+
+function showPosition3(position) {
+    //alert(position.coords.latitude);
+    //alert(position.coords.longitude); 
+run3(position);
+     document.getElementById('directsighting_latitude').value = position.coords.latitude;
+    document.getElementById('directsighting_longitude').value = position.coords.longitude;
+//document.getElementById('complaint_city_name').value =first_result.city ;
+    console.log(position.coords.latitude)
+    setTimeout(doSomething3, 3000);
+function doSomething3() {
+  document.getElementById('new_directsighting').submit();
+}
+
+}
+
+
+function run3(position){
+  var city;
+       var lat    = position.coords.latitude,
+      lng    = position.coords.longitude,
+      latlng   = new google.maps.LatLng(lat, lng),
+      geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          for (var i = 0; i < results.length; i++) {
+            if (results[i].types[0] === "locality") {
+              city = results[i].address_components[0].short_name;
+                 document.getElementById('directsighting_city_name').value = city;
+              var state = results[i].address_components[2].short_name;
+              $("input[name='location']").val(city + ", " + state);
+            }
+          }
+        }
+        else {console.log("No reverse geocode results.")}
+      }
+      else {console.log("Geocoder failed: " + status)}
+    });
+
 }

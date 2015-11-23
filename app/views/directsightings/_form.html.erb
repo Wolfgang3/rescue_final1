@@ -1,0 +1,55 @@
+
+
+<div class="container">
+<div class="row">
+<%= form_for(@directsighting,:html=>{:name=>"f",:onsubmit=>"getLocation3(event);"})  do |f| %>
+  <% if @directsighting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@directsighting.errors.count, "error") %> prohibited this sighting from being saved:</h2>
+
+      <ul>
+      <% @directsighting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field input-field" >
+    <%= f.label :species %><br>
+    <%= f.select :species, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']],{:class=>"browser-default"}%>
+  </div>
+
+  
+  <div>
+  Image upload: <%= f.file_field :species_image  %>
+  </div>
+
+<div class="field input-field" >
+    <%= f.label :email %><br>
+      <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field input-field" >
+    <%= f.label :phno %><br>
+  <%= f.text_field :phno, autofocus: true %>
+  </div>
+
+  <div class="field input-field" >
+    <%= f.label :user_name %><br>
+     <%= f.text_field :user_name, autofocus: true %>
+  </div>
+
+<!-- get latitude and longitude -->
+  <%= f.hidden_field  :latitude %>
+   <%= f.hidden_field  :longitude %>
+
+
+ <%= f.hidden_field  :city_name %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>

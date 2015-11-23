@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :directsightings
   get 'gis/show'
 
   get 'gis/show2'
