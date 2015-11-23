@@ -1,7 +1,6 @@
 
 
-<div class="container">
-<div class="row">
+
 <%= form_for(@directsighting,:html=>{:name=>"f",:onsubmit=>"getLocation3(event);"})  do |f| %>
   <% if @directsighting.errors.any? %>
     <div id="error_explanation">
@@ -15,29 +14,33 @@
     </div>
   <% end %>
 
-  <div class="field input-field" >
+   <div class="field input-field" >
     <%= f.label :species %><br>
     <%= f.select :species, [['snake','snake'],['crocodile','crocodile'],['tiger','tiger'],['other','other']],{:class=>"browser-default"}%>
   </div>
 
-  
-  <div>
-  Image upload: <%= f.file_field :species_image  %>
+  <div class="row">
+    <div class="col s12 l6 m6">
+    Image upload: <%= f.file_field :species_image  %>
+    </div>
+
+    <div class="field input-field col s12 l6 m6" >
+      <%= f.label :email %><br>
+        <%= f.email_field :email, autofocus: true %>
+    </div>
   </div>
 
-<div class="field input-field" >
-    <%= f.label :email %><br>
-      <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field input-field" >
+<div class="row">
+   
+  <div class="field input-field col s12 l6 m6" >
     <%= f.label :phno %><br>
   <%= f.text_field :phno, autofocus: true %>
   </div>
 
-  <div class="field input-field" >
+  <div class="field input-field col s12 l6 m6" >
     <%= f.label :user_name %><br>
      <%= f.text_field :user_name, autofocus: true %>
+  </div>
   </div>
 
 <!-- get latitude and longitude -->
@@ -48,8 +51,6 @@
  <%= f.hidden_field  :city_name %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Emergency Sighting", class:"btn btn-primary btn-lg text-center col-md-6 col-md-offset-3" %>
   </div>
 <% end %>
-</div>
-</div>

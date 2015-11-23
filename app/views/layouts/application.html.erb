@@ -38,7 +38,7 @@
       <ul class="right hide-on-med-and-down user-data">
         <% if !user_signed_in? %>
         <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
-        <li><%= link_to "New sighting", new_sighting_path, class: "btn btn-link"  %></li>
+        <li><%= link_to "New sighting", new_directsighting_path, class: "btn btn-link"  %></li>
         <li><%= link_to "Sign up for user", new_user_registration_path, class: "btn btn-link", method: :get%></li>
        
         <% else %>
@@ -56,10 +56,9 @@
        </ul>
        <ul class="side-nav" id="mobile-demo">
       <% if !user_signed_in? %>
-       <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
-        <li><%= link_to "New sighting", new_sighting_path %></li>
-        <li><%= link_to "Sign up for user", new_user_registration_path %></li>
-        <li><%= link_to "log in for user", new_user_session_path  %></li>
+        <li><%= link_to "See all popular sightings", gis_show_path, class: "btn btn-link"  %></li>
+        <li><%= link_to "New sighting", new_directsighting_path, class: "btn btn-link"  %></li>
+        <li><%= link_to "Sign up for user", new_user_registration_path, class: "btn btn-link", method: :get%></li>
         <% else %>
         <li id="img-avatar">
         <%= image_tag current_user.avatar.url(:thumb), class:"circle responsive-img" %>

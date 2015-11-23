@@ -14,7 +14,7 @@ group :test do
 end
 
 
-
+gem 'will_paginate', '~> 3.0', '>= 3.0.7'
 
 gem 'geocoder', '~> 1.2.8'
 gem 'gon', '~> 5.2.3'

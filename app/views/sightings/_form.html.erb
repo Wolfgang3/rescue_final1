@@ -1,5 +1,5 @@
-<div class="container">
-<div class="row">
+
+<div class="row well hoverable">
 <%= form_for(@sighting,:html=>{:name=>"f",:onsubmit=>"getLocation(event);"})  do |f| %>
   <% if @sighting.errors.any? %>
     <div id="error_explanation">
@@ -30,9 +30,8 @@
 
  <%= f.hidden_field  :city_name %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions ">
+    <%= f.submit "Create Sighting", class:"btn btn-primary btn-lg text-center col-md-6 col-md-offset-3" %>
   </div>
 <% end %>
-</div>
 </div>
