@@ -11,7 +11,7 @@
         
       </ul>
     </div>
-    <div id="test1" class="col s12 tabs-border">
+    <div id="test1" class="col s12 tabs-border well ">
       <h3 class="center-align">Listing of all notified sightings</h3>
 <% if @complaints_filter.size >0  %>
 <table class="highlight">
@@ -79,8 +79,8 @@
 <% end %>
 </table>
 
-    </div>
-    <div id="test2" class="col s12 tabs-border">  <!--  ++++++++++  listing of all sightings rescuer is attending to  ++++++++++ -->
+    </div> 
+    <div id="test2" class="col s12 tabs-border well">  <!--  ++++++++++  listing of all sightings rescuer is attending to  ++++++++++ -->
   <h3 class="center-align">Listing of all your attending sightings</h3>
   <% if @complaints_attending.size >0 %>
   <table class="highlight">
@@ -121,7 +121,7 @@
 <br>
 <div class="col s12">
 <!-- ++++++++++ Listing of all your sightings +++++++++++++-->
-<h3 class="center-align">Listing of all your sightings</h3>
+<h3 class="center-align">Listing of all your Sightings</h3>
 <% if @sighting.size >0 %>
 <table class="highlight">
   <thead>
@@ -176,12 +176,13 @@
 
 
 
-
+<div class="row">
   <% if current_user.role == "rescuer" %>
   <%= render('location/form') %>
-  <br>
-  <%= link_to "Generate report",new_report_path ,class: "btn btn-blue btn-lg " , method: :get%> 
+ 
+  <%= link_to "Generate report",new_report_path ,class: "btn btn-blue  m4 offset-m1 btn-gen-rep" , method: :get%> 
   <% end %>
+</div>
 <% end %>
 
 <br>
